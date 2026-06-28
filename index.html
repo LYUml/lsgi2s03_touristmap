@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royal Botanical Garden Tourist Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Source+Serif+4:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=no-photo-20260629" />
+  </head>
+  <body>
+    <main class="map-app" id="mapApp">
+      <section class="map-viewport" id="mapViewport" aria-label="Interactive tourist map">
+        <div class="map-canvas" id="mapCanvas">
+          <img id="mapImage" src="tourist_map_base.svg" alt="Tourist map of Royal Botanical Garden" />
+          <svg id="routeLayer" class="route-layer" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polyline id="routeShadowLine" points="" />
+            <polyline id="routeLine" points="" />
+            <polyline id="routeFlowLine" points="" />
+            <g id="routeDots"></g>
+          </svg>
+          <div id="hotspotLayer" class="hotspot-layer" aria-label="Map places"></div>
+          <div id="markerLayer" class="marker-layer" aria-label="Temporary marked points"></div>
+          <div id="routeEndpointLayer" class="route-endpoint-layer" aria-label="Route start and end"></div>
+        </div>
+      </section>
+
+      <header class="topbar">
+        <div>
+          <h1 id="pageTitle">Royal Botanical Garden</h1>
+          <p id="pageSubtitle">Interactive tourist map</p>
+        </div>
+        <button id="langToggle" class="round-btn" type="button" aria-label="Switch language">中</button>
+      </header>
+
+      <nav id="categoryBar" class="category-bar" aria-label="Place categories"></nav>
+
+      <section id="markPanel" class="mark-panel" aria-live="polite">
+        <strong id="markStatus">Marking Mode OFF</strong>
+        <p id="markHint">Press M to mark map coordinates.</p>
+        <code id="markLatest">No point yet</code>
+        <div class="mark-actions">
+          <button id="copyMarkedPoints" class="copy-btn" type="button">Copy Points</button>
+          <button id="undoRoutePoint" class="copy-btn secondary route-only" type="button">Undo Last</button>
+          <button id="clearRoutePoints" class="copy-btn secondary route-only" type="button">Clear Route</button>
+        </div>
+      </section>
+
+      <aside id="legendPanel" class="legend-panel" aria-label="Map legend list">
+        <div class="legend-rail" aria-label="Map index controls">
+          <button id="routeToggle" class="route-icon-btn" type="button" aria-pressed="false" aria-label="Route">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 18C9 14 15 15 18 6" />
+              <circle cx="6" cy="18" r="2.4" />
+              <circle cx="18" cy="6" r="2.4" />
+            </svg>
+          </button>
+          <button id="facilitiesToggle" class="facility-icon-btn" type="button" aria-pressed="false" aria-label="Facilities">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="7" cy="7" r="2.3" />
+              <circle cx="17" cy="7" r="2.3" />
+              <circle cx="7" cy="17" r="2.3" />
+              <circle cx="17" cy="17" r="2.3" />
+            </svg>
+          </button>
+          <button id="legendToggle" class="legend-toggle" type="button" aria-expanded="false" aria-label="Toggle map index">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <div class="legend-panel-body">
+          <div class="legend-panel-heading">
+            <strong id="legendTitle">Map Index</strong>
+          </div>
+          <div id="legendList" class="legend-list"></div>
+        </div>
+      </aside>
+
+      <div class="map-tools" aria-label="Map tools">
+        <button id="zoomIn" class="tool-btn square" type="button" aria-label="Zoom in">+</button>
+        <button id="zoomOut" class="tool-btn square" type="button" aria-label="Zoom out">−</button>
+        <button id="resetView" class="tool-btn square reset-btn" type="button" aria-label="Reset">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 8a7 7 0 1 0 1.1 5" />
+            <path d="M19 3v5h-5" />
+          </svg>
+        </button>
+      </div>
+
+      <aside id="placeDrawer" class="place-drawer" aria-live="polite">
+        <button id="closeDrawer" class="drawer-close" type="button" aria-label="Close details">×</button>
+        <div id="drawerPhoto" class="drawer-photo"></div>
+        <div class="drawer-copy">
+          <p id="drawerKicker" class="drawer-kicker"></p>
+          <h2 id="drawerTitle"></h2>
+          <p id="drawerBody"></p>
+          <p id="drawerRoute" class="drawer-route"></p>
+        </div>
+      </aside>
+    </main>
+
+    <script src="app.js?v=no-photo-20260629"></script>
+  </body>
+</html>
