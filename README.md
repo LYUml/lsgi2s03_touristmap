@@ -1,8 +1,8 @@
 # lsgi2s03_touristmap
 
-一个用于展示皇家植物园（Royal Botanical Garden）的互动式旅游地图网页项目。项目使用原生 HTML、CSS 和 JavaScript 实现，不需要打包工具，主要功能包括地图浏览、分类点位、编号景点、路线显示、中英文切换和点位采集。
+An interactive tourist map web project for the Royal Botanical Garden. The project is built with plain HTML, CSS, and JavaScript, with no build tools required. Main features include map browsing, categorized points of interest, numbered attractions, route display, English/Chinese language switching, and coordinate marking.
 
-## 项目结构
+## Project Structure
 
 ```text
 .
@@ -30,93 +30,93 @@
     └── preview_tag.png
 ```
 
-## 目录说明
+## Directory Guide
 
-- `map/`：网页主程序目录。
-  - `index.html`：页面入口。
-  - `styles.css`：页面布局、地图样式、按钮和弹窗样式。
-  - `app.js`：地图点位、路线、中英文文本、交互逻辑。
-- `basemap/`：底图资源，包括 PNG 和 SVG 版本。
-- `fig/`：景点详情中使用的图片素材。
-- `preview/`：项目预览图片，可用于展示或文档说明。
+- `map/`: Main web app directory.
+  - `index.html`: Page entry point.
+  - `styles.css`: Page layout, map styling, buttons, and drawer styles.
+  - `app.js`: Map points, routes, bilingual text, and interaction logic.
+- `basemap/`: Base map assets, including PNG and SVG versions.
+- `fig/`: Image assets used in attraction detail panels.
+- `preview/`: Project preview images for display or documentation.
 
-## 如何使用
+## How to Use
 
-### 1. 本地打开
+### 1. Open Locally
 
-这是一个静态网页项目，可以直接用浏览器打开：
+This is a static web project. You can open it directly in a browser:
 
 ```text
 map/index.html
 ```
 
-也可以在项目根目录启动一个本地静态服务器：
+You can also start a local static server from the project root:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-然后在浏览器访问：
+Then open this URL in your browser:
 
 ```text
 http://localhost:8000/map/
 ```
 
-### 2. 资源路径检查
+### 2. Check Asset Paths
 
-当前页面入口在 `map/` 目录下，因此地图底图和图片路径需要与 `map/index.html`、`map/app.js` 中的引用保持一致。
+The page entry point is inside the `map/` directory, so the base map and image paths need to match the references in `map/index.html` and `map/app.js`.
 
-如果打开页面后底图或照片没有显示，请检查：
+If the base map or photos do not appear after opening the page, check:
 
-- `tourist_map_base.svg` 是否能被 `map/index.html` 正确访问；
-- `fig/*.jpg` 图片路径是否与 `app.js` 中的图片路径一致；
-- 如果移动了资源目录，需要同步修改 `map/index.html` 和 `map/app.js` 中的路径。
+- Whether `tourist_map_base.svg` can be correctly accessed by `map/index.html`.
+- Whether the `fig/*.jpg` image paths match the paths used in `app.js`.
+- If you move any asset directories, update the related paths in both `map/index.html` and `map/app.js`.
 
-### 3. 修改地图内容
+### 3. Edit Map Content
 
-主要修改位置在 `map/app.js`：
+Most map content can be edited in `map/app.js`:
 
-- `mapConfig`：设置地图底图、尺寸、标题和替代文本。
-- `categories`：设置分类按钮，例如餐厅、洗手间、停车场、凉亭。
-- `places`：设置设施点位的坐标、名称和说明。
-- `numberedPointCoordinates`：设置编号景点在地图上的位置。
-- `numberedLegend`：设置编号景点的中英文名称。
-- `numberedPhotoMap`：设置景点对应的图片。
-- `numberedDetailMap`：设置景点停留时间和介绍文字。
-- `route`：设置推荐游览路线。
+- `mapConfig`: Sets the base map, dimensions, title, and alt text.
+- `categories`: Sets category buttons, such as restaurants, toilets, vehicle parks, and summer houses.
+- `places`: Sets facility point coordinates, names, and descriptions.
+- `numberedPointCoordinates`: Sets numbered attraction positions on the map.
+- `numberedLegend`: Sets English and Chinese names for numbered attractions.
+- `numberedPhotoMap`: Sets images for specific attractions.
+- `numberedDetailMap`: Sets recommended stay time and description text for attractions.
+- `route`: Sets the recommended tourist route.
 
-坐标使用百分比形式：
+Coordinates use percentage values:
 
 ```js
 { x: 56.74, y: 39.26 }
 ```
 
-其中 `x` 表示从地图左侧到右侧的位置，`y` 表示从地图顶部到底部的位置。
+Here, `x` represents the position from the left to the right of the map, and `y` represents the position from the top to the bottom of the map.
 
-## 主要功能
+## Main Features
 
-- 地图拖拽与缩放
-- 景点编号标注
-- 分类设施显示
-- 推荐路线显示
-- 景点详情弹窗
-- 中英文切换
-- 点位标注与路线采点辅助
+- Map dragging and zooming
+- Numbered attraction markers
+- Categorized facility display
+- Recommended route display
+- Attraction detail drawer
+- English/Chinese language switching
+- Coordinate marking and route point collection
 
-## 快捷键
+## Keyboard Shortcuts
 
-- `M`：开启或关闭设施点位标注模式。
-- `R`：开启或关闭路线采点模式。
-- `Esc`：退出当前标注模式或关闭详情弹窗。
+- `M`: Turn facility point marking mode on or off.
+- `R`: Turn route point collection mode on or off.
+- `Esc`: Exit the current marking mode or close the detail drawer.
 
-标注结果会临时保存在浏览器的 `localStorage` 中，也可以通过页面按钮复制坐标。
+Marked results are temporarily saved in the browser's `localStorage`. You can also copy coordinates using the page buttons.
 
-## GitHub Pages 部署
+## GitHub Pages Deployment
 
-上传到 GitHub 后，可以使用 GitHub Pages 部署静态页面。由于入口文件位于 `map/index.html`，访问地址通常类似：
+After uploading the project to GitHub, you can deploy it with GitHub Pages. Since the entry file is located at `map/index.html`, the published URL will usually look like this:
 
 ```text
-https://你的用户名.github.io/仓库名/map/
+https://your-username.github.io/repository-name/map/
 ```
 
-如果希望直接访问仓库主页就打开地图，可以把 `map/index.html` 移到项目根目录，或在根目录新增跳转页面。
+If you want the map to open directly from the repository homepage, you can move `map/index.html` to the project root or add a redirect page in the root directory.
